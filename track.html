@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order — ABU CAMPUS DELIVERY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy: #0F172A; --orange: #F97316; --cream: #F8F9FA; --white: #FFFFFF; --text-muted: #64748B; --border: #E2E8F0; --radius: 12px; --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1); --shadow-sm: 0 2px 4px rgba(0,0,0,0.04); }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: var(--cream); color: var(--navy); line-height: 1.6; padding-bottom: 80px; }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; color: var(--navy); }
+    a { text-decoration: none; }
+    header { background: var(--white); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { background: var(--orange); color: white; padding: 6px 10px; border-radius: 8px; font-weight: 800; font-size: 18px; }
+    .logo-text { font-size: 18px; font-weight: 700; }
+    nav { display: none; gap: 24px; } nav a { color: var(--navy); font-weight: 500; font-size: 15px; } nav a:hover { color: var(--orange); }
+    @media (min-width: 768px) { nav { display: flex; } .menu-btn { display: none; } }
+    .menu-btn { display: block; background: none; border: 0; font-size: 24px; color: var(--navy); }
+    .btn-nav { background: var(--orange); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+    
+    .container { max-width: 500px; margin: 60px auto; padding: 0 20px; }
+    .page-title { text-align: center; margin-bottom: 30px; }
+    .page-title h1 { font-size: 32px; margin-bottom: 8px; }
+    .page-title p { color: var(--text-muted); }
+    
+    .form-card { background: var(--white); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-lg); }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .field input { width: 100%; padding: 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 15px; background: var(--cream); transition: 0.2s; }
+    .field input:focus { outline: none; border-color: var(--orange); background: var(--white); }
+    
+    .btn { display: block; width: 100%; background: var(--orange); color: white; padding: 16px; border-radius: 10px; font-weight: 700; font-size: 16px; border: 0; cursor: pointer; }
+    
+    .result-card { background: var(--white); border: 1.5px solid var(--orange); border-radius: var(--radius); padding: 24px; margin-top: 24px; box-shadow: var(--shadow-lg); display: none; }
+    .result-card h3 { font-size: 18px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .result-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 15px; border-bottom: 1px solid var(--cream); }
+    .result-row:last-child { border: 0; }
+    .status-badge { background: var(--orange); color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+    
+    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; background: #25D366; color: white; border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 12px rgba(37,211,102,0.4); }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo"><span class="logo-icon">A</span><span class="logo-text">ABU Delivery</span></div>
+  <button class="menu-btn">☰</button>
+  <nav>
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="zones.html">Pricing</a>
+    <a href="track.html" style="color:var(--orange);">Track</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </nav>
+  <a href="order.html" class="btn-nav">Order Now</a>
+</header>
+
+<div class="container">
+  <div class="page-title">
+    <h1>Track Your Order</h1>
+    <p>Enter your details to see the current status.</p>
+  </div>
+  
+  <form class="form-card" id="trackForm">
+    <div class="field">
+      <label>Order ID</label>
+      <input type="text" id="tId" required placeholder="e.g. ABU-123" style="text-transform:uppercase;">
+    </div>
+    <div class="field">
+      <label>Phone Number</label>
+      <input type="tel" id="tPhone" required placeholder="Phone used for the order">
+    </div>
+    <button type="submit" class="btn">Check Status →</button>
+  </form>
+
+  <div id="trackResult" class="result-card">
+    <h3>Order Status</h3>
+    <div class="result-row"><span>Order ID:</span> <strong id="rId">-</strong></div>
+    <div class="result-row"><span>Customer:</span> <span id="rName">-</span></div>
+    <div class="result-row"><span>Product:</span> <span id="rProd">-</span></div>
+    <div class="result-row"><span>Current Status:</span> <span id="rStatus" class="status-badge">NEW</span></div>
+  </div>
+</div>
+
+<a href="https://wa.me/251998629169" class="wa-float" target="_blank">💬</a>
+
+<script>
+document.getElementById("trackForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const id = document.getElementById("tId").value.trim().toUpperCase();
+  const phone = document.getElementById("tPhone").value.trim();
+  const resultBox = document.getElementById("trackResult");
+  
+  // Simple loading state
+  const btn = e.target.querySelector("button");
+  btn.textContent = "Searching...";
+  
+  try {
+    const res = await fetch(`https://oxlmeztnkgppgrnobawl.supabase.co/rest/v1/orders?order_id=eq.${id}&phone=eq.${phone}`, {
+      headers: { 
+        apikey: "sb_publishable_dSZZc95lQFubfli-DDktFQ_b1nssXZT", 
+        Authorization: `Bearer sb_publishable_dSZZc95lQFubfli-DDktFQ_b1nssXZT` 
+      }
+    });
+    const data = await res.json();
+    
+    if (data.length === 0) { 
+      alert("Order not found. Please check your ID and phone number."); 
+      resultBox.style.display = "none"; 
+    } else {
+      document.getElementById("rId").textContent = data[0].order_id;
+      document.getElementById("rName").textContent = data[0].customer_name;
+      document.getElementById("rProd").textContent = data[0].product_details;
+      document.getElementById("rStatus").textContent = data[0].status;
+      resultBox.style.display = "block";
+    }
+  } catch (err) { 
+    alert("Error connecting to server. Please check your internet."); 
+  }
+  
+  btn.textContent = "Check Status →";
+});
+</script>
+</body>
+</html>

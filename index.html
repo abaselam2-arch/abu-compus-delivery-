@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABU CAMPUS DELIVERY — Your Campus. Your Orders. Delivered.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0F172A;
+      --orange: #F97316;
+      --orange-hover: #EA580C;
+      --cream: #F8F9FA;
+      --white: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --radius: 12px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 16px -4px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--cream); color: var(--text-dark); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; color: var(--navy); }
+    a { text-decoration: none; }
+
+    /* --- HEADER --- */
+    header {
+      background: var(--white); padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm);
+    }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { background: var(--orange); color: white; padding: 6px 10px; border-radius: 8px; font-weight: 800; font-size: 18px; }
+    .logo-text { font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+    
+    nav { display: none; gap: 24px; }
+    nav a { color: var(--text-dark); font-weight: 500; font-size: 15px; }
+    nav a:hover { color: var(--orange); }
+    @media (min-width: 768px) { nav { display: flex; } .menu-btn { display: none; } }
+    .menu-btn { display: block; background: none; border: 0; font-size: 24px; color: var(--navy); }
+    
+    .btn-nav { background: var(--orange); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+    .btn-nav:hover { background: var(--orange-hover); }
+
+    /* --- HERO SECTION (Guaranteed Background) --- */
+    .hero {
+      position: relative;
+      padding: 120px 20px;
+      text-align: center;
+      color: white;
+      /* This gradient guarantees a premium look even if the image fails */
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      /* The image is layered on top, but if it fails, the gradient shows */
+      background-image: url('https://images.unsplash.com/photo-1580674684081-7617fbf3d745?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .hero h1 { color: white; font-size: 42px; line-height: 1.2; margin-bottom: 16px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    .hero p { font-size: 16px; color: #E2E8F0; margin-bottom: 32px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+    
+    .btn-hero {
+      display: inline-block; background: var(--orange); color: white;
+      padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 16px;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4); transition: 0.2s;
+    }
+    .btn-hero:hover { transform: translateY(-2px); background: var(--orange-hover); }
+
+    /* --- SERVICES --- */
+    .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+    .section-header h2 { font-size: 24px; }
+    .section-header p { color: var(--text-muted); font-size: 14px; }
+    
+    .grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    @media (min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+    
+    .service-card {
+      background: var(--white); padding: 24px; border-radius: var(--radius);
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      transition: 0.2s; text-align: center;
+    }
+    .service-card:hover { border-color: var(--orange); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .icon-box { font-size: 32px; margin-bottom: 16px; }
+    .service-card h3 { font-size: 16px; margin-bottom: 8px; }
+    .service-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+    .card-link { font-size: 13px; font-weight: 600; color: var(--orange); }
+
+    /* --- HOW IT WORKS --- */
+    .how-it-works { background: var(--navy); padding: 60px 20px; color: white; text-align: center; }
+    .how-it-works h2 { color: white; margin-bottom: 40px; font-size: 24px; }
+    .steps { display: flex; flex-direction: column; gap: 30px; max-width: 800px; margin: 0 auto; }
+    @media (min-width: 768px) { .steps { flex-direction: row; justify-content: space-between; } }
+    .step { flex: 1; }
+    .step-num {
+      width: 40px; height: 40px; background: var(--orange); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: bold; margin: 0 auto 16px; font-size: 18px;
+    }
+    .step h3 { color: white; font-size: 16px; margin-bottom: 8px; }
+    .step p { color: #94A3B8; font-size: 13px; }
+
+    /* --- FOOTER --- */
+    footer { background: var(--white); padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); }
+    footer p { color: var(--text-muted); font-size: 14px; }
+    footer a { color: var(--orange); font-weight: 600; }
+
+    /* Floating WhatsApp */
+    .wa-float {
+      position: fixed; bottom: 20px; right: 20px; z-index: 999;
+      background: #25D366; color: white; border-radius: 50%;
+      width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; box-shadow: 0 4px 12px rgba(37,211,102,0.4);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-icon">A</span>
+    <span class="logo-text">ABU Delivery</span>
+  </div>
+  <button class="menu-btn">☰</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="zones.html">Pricing</a>
+    <a href="track.html">Track</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="order.html" class="btn-nav">Order Now</a>
+</header>
+
+<!-- Hero with Background Image -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Your Campus.<br>Your Orders. Delivered.</h1>
+    <p>The fastest, most reliable walking delivery service for Jimma University students. Open 24/7.</p>
+    <a href="order.html" class="btn-hero">Place an Order →</a>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<div class="container">
+  <div class="section-header">
+    <div>
+      <h2>What do you need?</h2>
+      <p>We deliver anything within the campus zones.</p>
+    </div>
+    <a href="services.html" style="color:var(--orange);font-weight:600;font-size:14px;">View All</a>
+  </div>
+  
+  <div class="grid">
+    <div class="service-card">
+      <div class="icon-box">🍔</div>
+      <h3>Food & Drinks</h3>
+      <p>Meals, snacks, and beverages delivered hot.</p>
+      <a href="order.html" class="card-link">Order Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="icon-box">📚</div>
+      <h3>Stationery</h3>
+      <p>Notebooks, pens, and study supplies.</p>
+      <a href="order.html" class="card-link">Order Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="icon-box">🖨️</div>
+      <h3>Printing</h3>
+      <p>Documents printed and delivered to you.</p>
+      <a href="order.html" class="card-link">Order Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="icon-box">🛒</div>
+      <h3>Groceries</h3>
+      <p>Daily essentials right to your dorm.</p>
+      <a href="order.html" class="card-link">Order Now →</a>
+    </div>
+  </div>
+</div>
+
+<!-- How it works -->
+<section class="how-it-works">
+  <h2>How ABU Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Place Order</h3>
+      <p>Fill out the quick form on our website.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Confirm on WhatsApp</h3>
+      <p>We message you the total price.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>We Walk to You</h3>
+      <p>Get your items delivered to your door.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="margin-bottom:16px;">
+    <span class="logo-icon">A</span>
+  </div>
+  <p style="font-weight:700;color:var(--navy);margin-bottom:8px;">ABU CAMPUS DELIVERY</p>
+  <p>Available 24 hours a day, 7 days a week.</p>
+  <p style="margin-top:16px;">📱 <a href="https://wa.me/251998629169">+251 99 862 9169</a></p>
+  <p style="margin-top:24px;font-size:12px;opacity:0.6;">© 2024 ABU Campus Delivery.</p>
+</footer>
+
+<a href="https://wa.me/251998629169" class="wa-float" target="_blank">💬</a>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — ABU CAMPUS DELIVERY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0F172A;
+      --orange: #F97316;
+      --orange-hover: #EA580C;
+      --cream: #F8F9FA;
+      --white: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --radius: 12px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--cream); color: var(--text-dark); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; color: var(--navy); }
+    a { text-decoration: none; }
+
+    /* HEADER */
+    header {
+      background: var(--white); padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm);
+    }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { background: var(--navy); color: white; padding: 6px 10px; border-radius: 8px; font-weight: 800; font-size: 18px; }
+    .logo-text { font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+    
+    /* LOGIN SCREEN */
+    #loginBox {
+      max-width: 400px; margin: 80px auto; background: var(--white);
+      padding: 40px 30px; border-radius: var(--radius); box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border); text-align: center;
+    }
+    #loginBox h2 { margin-bottom: 8px; }
+    #loginBox p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+    
+    .field { margin-bottom: 20px; text-align: left; }
+    .field label { display: block; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .field input { width: 100%; padding: 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 16px; background: var(--cream); }
+    .field input:focus { outline: none; border-color: var(--orange); background: var(--white); }
+    
+    .btn { display: block; width: 100%; background: var(--orange); color: white; padding: 14px; border-radius: 10px; font-weight: 600; font-size: 16px; border: 0; cursor: pointer; transition: 0.2s; }
+    .btn:hover { background: var(--orange-hover); }
+
+    /* DASHBOARD */
+    #dashboard { display: none; padding: 30px 20px; max-width: 1100px; margin: 0 auto; }
+    
+    /* STATS GRID */
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 30px; }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    
+    .stat-card { background: var(--white); padding: 20px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+    .stat-card h3 { font-size: 12px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.5px; }
+    .stat-card .num { font-size: 28px; font-weight: 800; color: var(--navy); font-family: 'Poppins', sans-serif; }
+    .stat-card.highlight { border-bottom: 4px solid var(--orange); }
+    
+    /* TABLE SECTION */
+    .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .table-header h2 { font-size: 20px; }
+    .refresh-btn { background: var(--white); border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; color: var(--navy); box-shadow: var(--shadow-sm); }
+    
+    .table-wrap { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-sm); overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    th, td { padding: 16px; text-align: left; font-size: 14px; border-bottom: 1px solid var(--border); }
+    th { background: var(--cream); color: var(--navy); font-weight: 600; }
+    tr:hover { background: #F8FAFC; }
+    tr:last-child td { border-bottom: 0; }
+    
+    /* STATUS DROPDOWN */
+    .status-select {
+      padding: 8px 12px; border-radius: 8px; border: 1.5px solid var(--border);
+      font-size: 13px; font-weight: 600; color: var(--navy); background: var(--white); cursor: pointer;
+    }
+    .status-select.NEW { border-color: #3B82F6; color: #1D4ED8; background: #EFF6FF; }
+    .status-select.CONFIRMED { border-color: #F59E0B; color: #B45309; background: #FFFBEB; }
+    .status-select.PAID { border-color: #10B981; color: #047857; background: #ECFDF5; }
+    .status-select.DELIVERED { border-color: #10B981; color: #047857; background: #ECFDF5; }
+    .status-select.CANCELLED { border-color: #EF4444; color: #B91C1C; background: #FEF2F2; }
+
+    .logout-btn { color: var(--text-muted); background: none; border: 0; font-size: 14px; font-weight: 600; cursor: pointer; }
+    .logout-btn:hover { color: #EF4444; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-icon">A</span>
+    <span class="logo-text">ABU Admin</span>
+  </div>
+  <button class="logout-btn" id="logoutBtn" style="display:none;" onclick="logout()">Logout</button>
+</header>
+
+<!-- LOGIN -->
+<div id="loginBox">
+  <h2>Admin Login</h2>
+  <p>Enter your secret PIN to access orders.</p>
+  <div class="field">
+    <label>PIN Code</label>
+    <input type="password" id="pinInput" placeholder="Enter PIN (default: 2483)">
+  </div>
+  <button class="btn" onclick="login()">Access Dashboard</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Total Orders</h3>
+      <div class="num" id="statTotal">0</div>
+    </div>
+    <div class="stat-card highlight">
+      <h3>New (Pending)</h3>
+      <div class="num" id="statNew">0</div>
+    </div>
+    <div class="stat-card">
+      <h3>Delivered</h3>
+      <div class="num" id="statDelivered">0</div>
+    </div>
+    <div class="stat-card">
+      <h3>Revenue (Fees)</h3>
+      <div class="num" id="statRevenue">0 <span style="font-size:14px;color:var(--text-muted);">ETB</span></div>
+    </div>
+  </div>
+
+  <div class="table-header">
+    <h2>Live Orders</h2>
+    <button class="refresh-btn" onclick="loadOrders()">🔄 Refresh</button>
+  </div>
+  
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Customer</th>
+          <th>Product</th>
+          <th>Phone</th>
+          <th>Fee</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTableBody">
+        <tr><td colspan="6" style="text-align:center; padding: 40px;">Loading orders...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const ADMIN_PIN = "1234"; 
+  const SB_URL = "https://oxlmeztnkgppgrnobawl.supabase.co";
+  const SB_KEY = "sb_publishable_dSZZc95lQFubfli-DDktFQ_b1nssXZT";
+
+  if (localStorage.getItem("abu_admin") === "true") {
+    showDashboard();
+  }
+
+  function login() {
+    const pin = document.getElementById("pinInput").value;
+    if (pin === ADMIN_PIN) {
+      localStorage.setItem("abu_admin", "true");
+      showDashboard();
+    } else {
+      alert("Incorrect PIN. Try again.");
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem("abu_admin");
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+    document.getElementById("logoutBtn").style.display = "none";
+  }
+
+  function showDashboard() {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("logoutBtn").style.display = "block";
+    loadOrders();
+  }
+
+  async function loadOrders() {
+    const tbody = document.getElementById("ordersTableBody");
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 40px;">Loading...</td></tr>';
+
+    try {
+      const res = await fetch(`${SB_URL}/rest/v1/orders?select=*&order=id.desc`, {
+        headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` }
+      });
+      const data = await res.json();
+      
+      if (data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 40px;">No orders yet.</td></tr>';
+        return;
+      }
+
+      // Update stats
+      let total = data.length;
+      let newOrders = 0;
+      let delivered = 0;
+      let revenue = 0;
+
+      data.forEach(o => {
+        if (o.status === "NEW") newOrders++;
+        if (o.status === "DELIVERED") { 
+          delivered++; 
+          revenue += (o.delivery_fee || 0); 
+        }
+      });
+
+      document.getElementById("statTotal").innerText = total;
+      document.getElementById("statNew").innerText = newOrders;
+      document.getElementById("statDelivered").innerText = delivered;
+      document.getElementById("statRevenue").innerText = revenue;
+
+      // Render table
+      tbody.innerHTML = data.map(o => `
+        <tr>
+          <td><strong>${o.order_id}</strong></td>
+          <td>${o.customer_name}<br><small style="color:var(--text-muted)">${o.location}</small></td>
+          <td>${o.product_details}</td>
+          <td><a href="tel:${o.phone}" style="color:var(--navy);font-weight:600;">${o.phone}</a></td>
+          <td><strong style="color:var(--orange)">${o.delivery_fee} ETB</strong></td>
+          <td>
+            <select class="status-select ${o.status.replace(' ', '')}" onchange="updateStatus('${o.id}', this)">
+              <option value="NEW" ${o.status==='NEW'?'selected':''}>NEW</option>
+              <option value="CONFIRMED" ${o.status==='CONFIRMED'?'selected':''}>CONFIRMED</option>
+              <option value="PAID" ${o.status==='PAID'?'selected':''}>PAID</option>
+              <option value="PICKED UP" ${o.status==='PICKED UP'?'selected':''}>PICKED UP</option>
+              <option value="ON THE WAY" ${o.status==='ON THE WAY'?'selected':''}>ON THE WAY</option>
+              <option value="DELIVERED" ${o.status==='DELIVERED'?'selected':''}>DELIVERED</option>
+              <option value="CANCELLED" ${o.status==='CANCELLED'?'selected':''}>CANCELLED</option>
+            </select>
+          </td>
+        </tr>
+      `).join("");
+
+    } catch (err) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:red; padding: 40px;">Error loading orders. Check internet.</td></tr>';
+    }
+  }
+
+  async function updateStatus(id, selectElement) {
+    const newStatus = selectElement.value;
+    // Update color class instantly
+    selectElement.className = `status-select ${newStatus.replace(' ', '')}`;
+    
+    try {
+      await fetch(`${SB_URL}/rest/v1/orders?id=eq.${id}`, {
+        method: "PATCH",
+        headers: { 
+          apikey: SB_KEY, 
+          Authorization: `Bearer ${SB_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status: newStatus })
+      });
+      loadOrders();
+    } catch (err) {
+      alert("Failed to update status. Check internet.");
+    }
+  }
+</script>
+</body>
+</html>

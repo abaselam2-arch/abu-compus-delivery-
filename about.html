@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — ABU CAMPUS DELIVERY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy: #0F172A; --orange: #F97316; --cream: #F8F9FA; --white: #FFFFFF; --text-muted: #64748B; --border: #E2E8F0; --radius: 12px; --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1); --shadow-sm: 0 2px 4px rgba(0,0,0,0.04); }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: var(--cream); color: var(--navy); line-height: 1.6; padding-bottom: 80px; }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; color: var(--navy); }
+    a { text-decoration: none; }
+    header { background: var(--white); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { background: var(--orange); color: white; padding: 6px 10px; border-radius: 8px; font-weight: 800; font-size: 18px; }
+    .logo-text { font-size: 18px; font-weight: 700; }
+    nav { display: none; gap: 24px; } nav a { color: var(--navy); font-weight: 500; font-size: 15px; } nav a:hover { color: var(--orange); }
+    @media (min-width: 768px) { nav { display: flex; } .menu-btn { display: none; } }
+    .menu-btn { display: block; background: none; border: 0; font-size: 24px; color: var(--navy); }
+    .btn-nav { background: var(--orange); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+    
+    .container { max-width: 700px; margin: 60px auto; padding: 0 20px; }
+    .page-title { text-align: center; margin-bottom: 40px; }
+    .page-title h1 { font-size: 32px; margin-bottom: 8px; }
+    
+    .content-card { background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 1px solid var(--border); }
+    .content-card p { margin-bottom: 20px; color: var(--text-muted); font-size: 16px; }
+    .content-card strong { color: var(--navy); }
+    
+    .quote { font-size: 20px; font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--orange); text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border); }
+    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; background: #25D366; color: white; border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 12px rgba(37,211,102,0.4); }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo"><span class="logo-icon">A</span><span class="logo-text">ABU Delivery</span></div>
+  <button class="menu-btn">☰</button>
+  <nav>
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="zones.html">Pricing</a>
+    <a href="track.html">Track</a><a href="about.html" style="color:var(--orange);">About</a><a href="contact.html">Contact</a>
+  </nav>
+  <a href="order.html" class="btn-nav">Order Now</a>
+</header>
+
+<div class="container">
+  <div class="page-title">
+    <h1>About ABU Delivery</h1>
+  </div>
+  
+  <div class="content-card">
+    <p><strong>ABU CAMPUS DELIVERY</strong> is a student-focused delivery business designed to make buying, selling, ordering, and receiving products easier for university students.</p>
+    <p>We started around Jimma University with a simple idea: walking-based delivery. We connect students with shops, small businesses, and student vendors — you place the order, we do the walking.</p>
+    <p><strong>Our Promise:</strong> Fast, convenient, and affordable. We are open 24 hours a day, 7 days a week, serving Jimma University and all accessible surrounding campus areas.</p>
+    <div class="quote">"Your Campus. Your Orders. Delivered."</div>
+  </div>
+</div>
+<a href="https://wa.me/251998629169" class="wa-float" target="_blank">💬</a>
+</body>
+</html>

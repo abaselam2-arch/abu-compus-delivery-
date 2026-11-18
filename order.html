@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Now — ABU CAMPUS DELIVERY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0F172A;
+      --orange: #F97316;
+      --orange-hover: #EA580C;
+      --cream: #F8F9FA;
+      --white: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --radius: 12px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--cream); color: var(--text-dark); line-height: 1.6; padding-bottom: 80px; }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; color: var(--navy); }
+    a { text-decoration: none; }
+
+    /* HEADER */
+    header {
+      background: var(--white); padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm);
+    }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { background: var(--orange); color: white; padding: 6px 10px; border-radius: 8px; font-weight: 800; font-size: 18px; }
+    .logo-text { font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+    
+    nav { display: none; gap: 24px; }
+    nav a { color: var(--text-dark); font-weight: 500; font-size: 15px; }
+    nav a:hover { color: var(--orange); }
+    @media (min-width: 768px) { nav { display: flex; } .menu-btn { display: none; } }
+    .menu-btn { display: block; background: none; border: 0; font-size: 24px; color: var(--navy); }
+    
+    .btn-nav { background: var(--orange); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+
+    /* FORM SECTION */
+    .container { max-width: 700px; margin: 40px auto; padding: 0 20px; }
+    .form-header { text-align: center; margin-bottom: 30px; }
+    .form-header h1 { font-size: 32px; margin-bottom: 8px; }
+    .form-header p { color: var(--text-muted); }
+
+    .form-card {
+      background: var(--white); border-radius: var(--radius); padding: 30px;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+    }
+    
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .field label span { color: #EF4444; }
+    
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 14px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-size: 15px; background: var(--cream);
+      transition: 0.2s; font-family: inherit;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none; border-color: var(--orange); background: var(--white);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .row { grid-template-columns: 1fr; } }
+
+    /* SUMMARY BOX */
+    .summary {
+      background: var(--cream); border: 1.5px dashed var(--border);
+      border-radius: var(--radius); padding: 20px; margin: 24px 0;
+    }
+    .summary h3 { font-size: 16px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .summary .line { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: var(--text-dark); }
+    .summary .total { font-size: 18px; font-weight: 700; color: var(--navy); padding-top: 12px; border-top: 1px solid var(--border); margin-top: 8px; }
+
+    /* BUTTONS */
+    .btn { display: block; width: 100%; padding: 16px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; border: 0; text-align: center; transition: 0.2s; }
+    .btn-primary { background: var(--orange); color: white; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
+    .btn-primary:hover { background: var(--orange-hover); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--border); margin-top: 12px; }
+    .btn-outline:hover { border-color: var(--navy); }
+
+    footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 14px; }
+
+    /* Floating WhatsApp */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      background: #25D366; color: white; border-radius: 50%;
+      width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; box-shadow: 0 4px 12px rgba(37,211,102,0.4);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-icon">A</span>
+    <span class="logo-text">ABU Delivery</span>
+  </div>
+  <button class="menu-btn">☰</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="zones.html">Pricing</a>
+    <a href="track.html">Track</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="order.html" class="btn-nav">Order Now</a>
+</header>
+
+<div class="container">
+  <div class="form-header">
+    <h1>Place Your Order</h1>
+    <p>Fill out the details below. We will confirm your total on WhatsApp.</p>
+  </div>
+
+  <form class="form-card" id="orderForm">
+    <div class="field">
+      <label>Your Name <span>*</span></label>
+      <input type="text" id="name" required placeholder="e.g. Abebe Tesfaye">
+    </div>
+
+    <div class="field">
+      <label>Phone Number <span>*</span></label>
+      <input type="tel" id="phone" required placeholder="e.g. 0912345678">
+    </div>
+
+    <div class="field">
+      <label>Exact Delivery Location <span>*</span></label>
+      <input type="text" id="location" required placeholder="e.g. Block 4, Room 12, near cafeteria">
+    </div>
+
+    <div class="field">
+      <label>Product Category <span>*</span></label>
+      <select id="category" required>
+        <option value="">Select category</option>
+        <option>Food & Drinks</option>
+        <option>Stationery</option>
+        <option>Printing</option>
+        <option>Groceries & Essentials</option>
+        <option>Errand / Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Product Details <span>*</span></label>
+      <textarea id="details" required placeholder="Describe what you need. e.g. '2 exercise books, 1 blue pen'"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Quantity</label>
+        <input type="number" id="quantity" value="1" min="1">
+      </div>
+      <div class="field">
+        <label>Delivery Zone <span>*</span></label>
+        <select id="zone" required>
+          <option value="">Select zone</option>
+          <option value="A">Zone A (20 ETB)</option>
+          <option value="B">Zone B (30 ETB)</option>
+          <option value="C">Zone C (40 ETB)</option>
+          <option value="D">Zone D (50 ETB)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Delivery Time <span>*</span></label>
+      <input type="text" id="time" required placeholder="e.g. Now / Today at 3pm">
+    </div>
+
+    <div class="field">
+      <label>Additional Instructions</label>
+      <textarea id="instructions" placeholder="Optional: Gate code, specific instructions, etc."></textarea>
+    </div>
+
+    <div class="summary">
+      <h3>Order Summary</h3>
+      <div class="line"><span>Order ID:</span> <strong id="s-id">ABU-...</strong></div>
+      <div class="line"><span>Delivery Fee:</span> <strong id="s-fee">— ETB</strong></div>
+      <div class="line total"><span>You Pay:</span> <span>Product + <span id="s-fee2">0</span> ETB</span></div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Order via WhatsApp →</button>
+    <button type="button" class="btn btn-outline" id="copyBtn">Copy Order Summary</button>
+  </form>
+</div>
+
+<footer>
+  <p>📱 <a href="https://wa.me/251998629169" style="color:var(--orange);font-weight:600;">+251 99 862 9169</a> · 24 hours</p>
+</footer>
+
+<a href="https://wa.me/251998629169" class="wa-float" target="_blank">💬</a>
+
+<script>
+  const ABU_CONFIG = {
+    whatsapp: "251998629169",
+    supabaseUrl: "https://oxlmeztnkgppgrnobawl.supabase.co",
+    supabaseKey: "sb_publishable_dSZZc95lQFubfli-DDktFQ_b1nssXZT"
+  };
+
+  // Generate Order ID
+  let currentOrderId = "ABU-" + Math.floor(Math.random() * 900 + 100);
+  document.getElementById("s-id").textContent = currentOrderId;
+
+  // Update fee when zone changes
+  document.getElementById("zone").addEventListener("change", function() {
+    const fees = { A: 20, B: 30, C: 40, D: 50 };
+    const fee = fees[this.value] || 0;
+    document.getElementById("s-fee").textContent = fee + " ETB";
+    document.getElementById("s-fee2").textContent = fee;
+  });
+
+  function buildSummary() {
+    const val = id => document.getElementById(id).value.trim();
+    const fee = document.getElementById("s-fee2").textContent;
+    return `🛵 *ABU CAMPUS DELIVERY — NEW ORDER*\n\n*Order ID:* ${currentOrderId}\n*Name:* ${val("name")}\n*Phone:* ${val("phone")}\n*Location:* ${val("location")}\n\n*Category:* ${val("category")}\n*Product:* ${val("details")}\n*Quantity:* ${val("quantity")}\n*Zone:* ${val("zone")} (${fee} ETB)\n*Time:* ${val("time")}\n*Notes:* ${val("instructions") || "None"}\n\n*Delivery fee:* ${fee} ETB\n*Total:* Product + ${fee} ETB`;
+  }
+
+  // Submit form
+  document.getElementById("orderForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const val = id => document.getElementById(id).value.trim();
+    
+    const order = {
+      order_id: currentOrderId, 
+      customer_name: val("name"), 
+      phone: val("phone"),
+      location: val("location"), 
+      category: val("category"), 
+      product_details: val("details"),
+      quantity: val("quantity"), 
+      zone: val("zone"), 
+      delivery_fee: parseInt(document.getElementById("s-fee2").textContent),
+      delivery_time: val("time"), 
+      instructions: val("instructions"),
+      status: "NEW", 
+      payment: "PENDING"
+    };
+
+    // Save to Supabase
+    try {
+      await fetch(`${ABU_CONFIG.supabaseUrl}/rest/v1/orders`, {
+        method: "POST",
+        headers: { 
+          apikey: ABU_CONFIG.supabaseKey, 
+          Authorization: `Bearer ${ABU_CONFIG.supabaseKey}`, 
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify(order)
+      });
+    } catch (err) { 
+      console.warn("Supabase error, continuing to WhatsApp"); 
+    }
+
+    // Open WhatsApp
+    window.open(`https://wa.me/${ABU_CONFIG.whatsapp}?text=${encodeURIComponent(buildSummary())}`, "_blank");
+  });
+
+  // Copy button
+  document.getElementById("copyBtn").addEventListener("click", () => {
+    navigator.clipboard.writeText(buildSummary());
+    alert("Order summary copied to clipboard!");
+  });
+</script>
+</body>
+</html>
